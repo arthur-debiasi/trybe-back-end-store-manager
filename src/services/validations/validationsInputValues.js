@@ -1,5 +1,5 @@
 const {
-  idSchema,
+  idSchema, registerProductSchema,
 } = require('./schemas');
 
 const validateId = (id) => {
@@ -9,6 +9,19 @@ const validateId = (id) => {
   return { type: null, message: '' };
 };
 
+const validateRegisterProduct = (name) => {
+  const { error } = registerProductSchema.validate({ name });
+  if (error) {
+ return {
+    type: name ? 'INVALID_VALUE' : 'UNDEFINED_VALUE',
+    message: error.message,
+  }; 
+}
+
+  return { type: null, message: '' };
+};
+
 module.exports = {
   validateId,
+  validateRegisterProduct,
 };

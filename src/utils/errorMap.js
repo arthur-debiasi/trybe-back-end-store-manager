@@ -1,9 +1,10 @@
 const errorMap = {
   PRODUCT_NOT_FOUND: 404,
   INVALID_VALUE: 422,
-  TRAVEL_NOT_FOUND: 404,
-  DRIVER_NOT_FOUND: 404,
-  TRAVEL_CONFLICT: 409,
+  // TRAVEL_NOT_FOUND: 404,
+  // DRIVER_NOT_FOUND: 404,
+  // TRAVEL_CONFLICT: 409,
+  UNDEFINED_VALUE: 400,
 };
 
 const mapError = (type) => errorMap[type] || 500;
