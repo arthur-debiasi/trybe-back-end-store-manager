@@ -7,9 +7,6 @@ const listProducts = async () => {
 };
 
 const listProductsById = async (productId) => {
-  // const error = schema.validateId(productId);
-  // if (error.type) return error;
-
   const product = await productsModel.listProductsById(productId);
   if (!product) {
     return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
@@ -18,7 +15,15 @@ const listProductsById = async (productId) => {
   return { type: null, message: product };
 };
 
+const registerProduct = async (name) => {
+  const newProductId = await productsModel.registerProduct(name);
+  const newProduct = await productsModel.listProductsById(newProductId);
+
+  return { type: null, message: newProduct };
+};
+
 module.exports = {
   listProducts,
   listProductsById,
+  registerProduct,
 };

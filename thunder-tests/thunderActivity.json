@@ -12,5 +12,24 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "9779e616-5d19-4372-9dbe-951dd576fcd3",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products",
+    "url": "localhost:3000/products",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-01-13T22:08:37.392Z",
+    "modified": "2023-01-13T22:08:37.392Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"ProdutoX\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
