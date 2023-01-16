@@ -19,7 +19,7 @@ const newInvalidProduct = { name: "Sal" };
 
 const manteigaResponse = { type: null, message: { id: 4, name: "Manteiga" } };
 
-const salResponse = { type: "INVALID_VALUE" , message: 'sal'};
+const salResponse = { type: "INVALID_VALUE" , message: '"name" length must be at least 5 characters long'};
 
 module.exports = {
   products,
