@@ -1,6 +1,18 @@
 const { salesModel, productsModel } = require('../models');
 const { validateRegisterSale } = require('./validations/validationsInputValues');
 
+const listSales = async () => {
+  const sales = await salesModel.listSales();
+  return { type: null, message: sales };
+};
+const listSalesById = async (id) => {
+  const sales = await salesModel.listSales();
+  const salesIdsList = sales.map(({ saleId }) => saleId);
+  console.log(salesIdsList);
+  if (!salesIdsList.includes(id)) return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+  return { type: null, message: await salesModel.listSalesById(id) };
+};
+// listSalesById(2).then((e) => console.log(e));
 const registerSales = async (sales) => {
   const error = validateRegisterSale(sales);
   if (error.type) return error;
@@ -20,4 +32,6 @@ const registerSales = async (sales) => {
 
 module.exports = {
   registerSales,
+  listSales,
+  listSalesById,
 };
