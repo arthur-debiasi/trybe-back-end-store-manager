@@ -1,5 +1,5 @@
 const {
-  idSchema, registerProductSchema,
+  idSchema, registerProductSchema, registerSaleSchema,
 } = require('./schemas');
 
 const validateId = (id) => {
@@ -21,7 +21,20 @@ const validateRegisterProduct = (name) => {
   return { type: null, message: '' };
 };
 
+const validateRegisterSale = (sales) => {
+  const salesErrorArr = sales.map((sale) => registerSaleSchema.validate(sale));
+  if (salesErrorArr.some((sale) => sale.error)) {
+    const { error } = salesErrorArr.find((sale) => sale.error);
+    return {
+      type: error.message.includes('required') ? 'UNDEFINED_VALUE' : 'INVALID_VALUE',
+      message: error.message,
+    };
+  }
+  return { type: null, message: '' };
+};
+
 module.exports = {
   validateId,
   validateRegisterProduct,
+  validateRegisterSale,
 };
