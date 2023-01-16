@@ -12,7 +12,9 @@ const products = [
     "name": "Escudo do Capitão América"
   }
 ]
+const newProduct = { name: 'Manteiga' };
 
 module.exports = {
   products,
+  newProduct,
 }
