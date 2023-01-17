@@ -9,7 +9,7 @@ const validateId = (id) => {
   return { type: null, message: '' };
 };
 
-const a = { name: 'fuba' };
+// const a = { name: 'fuba' };
 const validateRegisterProduct = (product) => {
   const { error } = registerProductSchema.validate(product);
   if (error) {
@@ -21,7 +21,6 @@ const validateRegisterProduct = (product) => {
 
   return { type: null, message: '' };
 };
-console.log(validateRegisterProduct(a));
 
 const validateRegisterSale = (sales) => {
   const salesErrorArr = sales.map((sale) => registerSaleSchema.validate(sale));

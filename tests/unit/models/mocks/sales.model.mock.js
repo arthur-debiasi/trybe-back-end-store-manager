@@ -29,24 +29,22 @@ const validSale = [
     quantity: 15,
   },
 ];
-console.log(validSale.map(e=> e.productId));
 
-const validSaleResponse = {
-  id: 4,
-  itemsSold: [
-    {
-      productId: 1,
-      quantity: 12,
-    },
-    {
-      productId: 2,
-      quantity: 15,
-    },
-  ],
-};
+// const validSaleResponse = {
+//   id: 4,
+//   itemsSold: [
+//     {
+//       productId: 1,
+//       quantity: 12,
+//     },
+//     {
+//       productId: 2,
+//       quantity: 15,
+//     },
+//   ],
+// };
 
 module.exports = {
   salesList,
   validSale,
-  validSaleResponse,
 };

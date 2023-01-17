@@ -5,7 +5,7 @@ const { productsModel } = require('../../../src/models');
 const { productsService } = require('../../../src/services');
 const { products, newProduct, manteigaResponse, salResponse, newInvalidProduct } = require('./mocks/products.service.mock');
 
-describe("Verificando service de produtos", function () {
+describe("Verificando service de products", function () {
   describe("listagem de produtos", function () {
     it("retorna a lista completa de produtos", async function () {
 

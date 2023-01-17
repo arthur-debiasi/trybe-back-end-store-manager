@@ -8,11 +8,10 @@ const listSales = async () => {
 const listSalesById = async (id) => {
   const sales = await salesModel.listSales();
   const salesIdsList = sales.map(({ saleId }) => saleId);
-  console.log(salesIdsList);
   if (!salesIdsList.includes(id)) return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
   return { type: null, message: await salesModel.listSalesById(id) };
 };
-// listSalesById(2).then((e) => console.log(e));
+
 const registerSales = async (sales) => {
   const error = validateRegisterSale(sales);
   if (error.type) return error;
@@ -26,7 +25,7 @@ const registerSales = async (sales) => {
     id: saleId,
     itemsSold: sales,
   };
-
+  
   return { type: null, message: newSale };
 };
 
