@@ -4,8 +4,6 @@ const { mapError } = require('../utils/errorMap');
 const listProducts = async (_req, res) => {
   const { message } = await productsService.listProducts();
 
-  // if (type) return res.status(500).json(message);
-
   res.status(200).json(message);
 };
 
@@ -27,7 +25,7 @@ const registerProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
-  const { type, message } = await productsService.updateProduct(req.body, +req.params.id);
+  const { type, message } = await productsService.updateProduct(req.body, Number(req.params.id));
 
   if (type) return res.status(mapError(type)).json({ message });
 

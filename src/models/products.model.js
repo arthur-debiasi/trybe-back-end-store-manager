@@ -36,8 +36,6 @@ const updateProduct = async (name, productId) => {
   );
   return affectedRows;
   };
-  
-updateProduct('manteiga', 2).then((e) => console.log(e));
 
 module.exports = {
   listProducts,
