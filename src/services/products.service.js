@@ -25,11 +25,16 @@ const registerProduct = async (product) => {
   return { type: null, message: newProduct };
 };
 
-const updateProduct = async (product) => {
+const updateProduct = async (product, productId) => {
   const error = schema.validateRegisterProduct(product);
   if (error.type) return error;
+    const products = await productsModel.listProducts();
+    const productsIds = products.map(({ id }) => +id);
+    if (!productsIds.includes(productId)) {
+      return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+    }
 
-  const newProductId = await productsModel.updateProduct(product.name);
+  const newProductId = await productsModel.updateProduct(product.name, productId);
   const newProduct = await productsModel.listProductsById(newProductId);
 
   return { type: null, message: newProduct };

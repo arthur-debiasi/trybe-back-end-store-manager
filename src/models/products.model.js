@@ -25,7 +25,7 @@ const registerProduct = async (name) => {
   return insertId;
 };
 
-const updateProduct = async (productId, name) => {
+const updateProduct = async (name, productId) => {
   const [{ affectedRows }] = await connection.execute(
     `UPDATE StoreManager.products 
     SET 
@@ -37,7 +37,7 @@ const updateProduct = async (productId, name) => {
   return affectedRows;
   };
   
-updateProduct(2, 'manteiga').then((e) => console.log(e));
+updateProduct('manteiga', 2).then((e) => console.log(e));
 
 module.exports = {
   listProducts,

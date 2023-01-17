@@ -27,11 +27,11 @@ const registerProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
-  const { type, message } = await productsService.updateProduct(req.body);
+  const { type, message } = await productsService.updateProduct(req.body, +req.params.id);
 
   if (type) return res.status(mapError(type)).json({ message });
 
-  res.status(201).json(message);
+  res.status(200).json(message);
 };
 
 module.exports = {
