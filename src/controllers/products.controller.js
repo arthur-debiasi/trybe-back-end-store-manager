@@ -2,9 +2,9 @@ const { productsService } = require('../services/index');
 const { mapError } = require('../utils/errorMap');
 
 const listProducts = async (_req, res) => {
-  const { type, message } = await productsService.listProducts();
+  const { message } = await productsService.listProducts();
 
-  if (type) return res.status(500).json(message);
+  // if (type) return res.status(500).json(message);
 
   res.status(200).json(message);
 };
@@ -19,9 +19,7 @@ const listProductsById = async (req, res) => {
 };
 
 const registerProduct = async (req, res) => {
-  const { name } = req.body;
-
-  const { type, message } = await productsService.registerProduct(name);
+  const { type, message } = await productsService.registerProduct(req.body);
 
   if (type) return res.status(mapError(type)).json({ message });
 

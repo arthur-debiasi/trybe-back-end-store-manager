@@ -43,24 +43,24 @@ describe("Verificando service de produtos", function () {
 
   describe('Cadastrando um novo produto', () => { 
 
-      it('de name "Manteiga"', async function () {
+      it('com o name "Manteiga"', async function () {
         sinon.stub(productsModel, "registerProduct").resolves(4);
         sinon
           .stub(productsModel, "listProductsById")
           .resolves({ id: 4, name: "Manteiga" });
 
-        const result = await productsService.registerProduct(newProduct.name);
+        const result = await productsService.registerProduct(newProduct);
 
         expect(result).to.be.deep.equal(manteigaResponse);
       });
     
-     it('de name "Sal" (curto demais)', async function () {
+     it('com o name "Sal" (curto demais)', async function () {
        sinon.stub(productsModel, "registerProduct").resolves(4);
        sinon
          .stub(productsModel, "listProductsById")
          .resolves({ id: 4, name: "Manteiga" });
 
-       const result = await productsService.registerProduct(newInvalidProduct.name);
+       const result = await productsService.registerProduct(newInvalidProduct);
 
        expect(result).to.be.deep.equal(salResponse);
      });

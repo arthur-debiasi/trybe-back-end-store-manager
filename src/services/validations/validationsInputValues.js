@@ -9,17 +9,19 @@ const validateId = (id) => {
   return { type: null, message: '' };
 };
 
-const validateRegisterProduct = (name) => {
-  const { error } = registerProductSchema.validate({ name });
+const a = { name: 'fuba' };
+const validateRegisterProduct = (product) => {
+  const { error } = registerProductSchema.validate(product);
   if (error) {
  return {
-    type: name ? 'INVALID_VALUE' : 'UNDEFINED_VALUE',
+    type: product.name ? 'INVALID_VALUE' : 'UNDEFINED_VALUE',
     message: error.message,
   }; 
 }
 
   return { type: null, message: '' };
 };
+console.log(validateRegisterProduct(a));
 
 const validateRegisterSale = (sales) => {
   const salesErrorArr = sales.map((sale) => registerSaleSchema.validate(sale));

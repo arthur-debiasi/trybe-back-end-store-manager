@@ -16,10 +16,10 @@ const listProductsById = async (productId) => {
   return camelize(product);
 };
 
-const registerProduct = async (product) => {
+const registerProduct = async (name) => {
   const [{ insertId }] = await connection.execute(
     'INSERT INTO StoreManager.products (name) VALUE (?)',
-    [product],
+    [name],
   );
 
   return insertId;

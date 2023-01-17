@@ -15,15 +15,16 @@ const listProductsById = async (productId) => {
   return { type: null, message: product };
 };
 
-const registerProduct = async (name) => {
-    const error = schema.validateRegisterProduct(name);
+const registerProduct = async (product) => {
+    const error = schema.validateRegisterProduct(product);
   if (error.type) return error;
   
-  const newProductId = await productsModel.registerProduct(name);
+  const newProductId = await productsModel.registerProduct(product.name);
   const newProduct = await productsModel.listProductsById(newProductId);
 
   return { type: null, message: newProduct };
 };
+registerProduct({ name: 'fuba' }).then((e) => console.log(e));
 
 module.exports = {
   listProducts,
