@@ -26,8 +26,17 @@ const registerProduct = async (req, res) => {
   res.status(201).json(message);
 };
 
+const updateProduct = async (req, res) => {
+  const { type, message } = await productsService.updateProduct(req.body);
+
+  if (type) return res.status(mapError(type)).json({ message });
+
+  res.status(201).json(message);
+};
+
 module.exports = {
   listProducts,
   listProductsById,
   registerProduct,
+  updateProduct,
 };

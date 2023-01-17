@@ -24,10 +24,20 @@ const registerProduct = async (product) => {
 
   return { type: null, message: newProduct };
 };
-registerProduct({ name: 'fuba' }).then((e) => console.log(e));
+
+const updateProduct = async (product) => {
+  const error = schema.validateRegisterProduct(product);
+  if (error.type) return error;
+
+  const newProductId = await productsModel.updateProduct(product.name);
+  const newProduct = await productsModel.listProductsById(newProductId);
+
+  return { type: null, message: newProduct };
+};
 
 module.exports = {
   listProducts,
   listProductsById,
   registerProduct,
+  updateProduct,
 };

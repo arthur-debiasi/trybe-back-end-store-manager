@@ -25,8 +25,23 @@ const registerProduct = async (name) => {
   return insertId;
 };
 
+const updateProduct = async (productId, name) => {
+  const [{ affectedRows }] = await connection.execute(
+    `UPDATE StoreManager.products 
+    SET 
+    products.name = ?
+    WHERE
+    products.id = ?;`,
+    [name, productId],
+  );
+  return affectedRows;
+  };
+  
+updateProduct(2, 'manteiga').then((e) => console.log(e));
+
 module.exports = {
   listProducts,
   listProductsById,
   registerProduct,
+  updateProduct,
 };
