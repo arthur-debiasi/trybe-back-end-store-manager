@@ -9,7 +9,6 @@ const validateId = (id) => {
   return { type: null, message: '' };
 };
 
-// const a = { name: 'fuba' };
 const validateRegisterProduct = (product) => {
   const { error } = registerProductSchema.validate(product);
   if (error) {
