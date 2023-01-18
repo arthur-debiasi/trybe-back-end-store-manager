@@ -105,4 +105,66 @@ describe("Teste de unidade do products Controller", function () {
       expect(res.json).to.have.been.calledWith({ message: fubaStub.message });
     });
   });
+
+  describe("Atualizando um produto", function () {
+    it('com um id que não existe no banco de dados, retorna status 404 e "Product not found"', async function () {
+      const req = { params: 123123, body: { name: "Manteiga" } };
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon.stub(productsService, "updateProduct").resolves(productNotFound);
+      await productsController.updateProduct(req, res);
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWith({
+        message: productNotFound.message,
+      });
+    });
+    it('com um id que existe no banco de dados, retorna status 200 e o novo produto', async function () {
+      const req = { params: 123123, body: breadProduct };
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon.stub(productsService, "updateProduct").resolves(breadStub);
+      await productsController.updateProduct(req, res);
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith(breadStub.message);
+    });
+  })
+
+  describe("Deletando um produto", function () {
+    it('com um id que não existe no banco de dados, retorna status 404 e "Product not found"', async function () {
+      const req = { params: 123123 };
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+
+      sinon
+        .stub(productsService, "deleteProductById")
+        .resolves(productNotFound);
+
+      await productsController.deleteProductById(req, res);
+
+      expect(res.status).to.have.been.calledWith(404);
+      expect(res.json).to.have.been.calledWith({
+        message: productNotFound.message,
+      });
+    });
+
+    it("com um id que existe no banco de dados, retorna status 204 apenas", async function () {
+      const req = { params: { id: 2 }, body: { name: "Manteiga" } };
+      const res = {};
+
+      res.status = sinon.stub().returns(res);
+      res.end = sinon.stub().returns(res);
+
+      sinon.stub(productsService, "deleteProductById").resolves({});
+
+      await productsController.deleteProductById(req, res);
+
+      expect(res.status).to.have.been.calledWith(204);
+    });
+  });
 });
