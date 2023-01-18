@@ -13,7 +13,7 @@ const {
 const { expect } = chai;
 chai.use(sinonChai);
 
-describe("Teste de unidade do sales Controller", function () {
+describe("Teste de unidade do Controller da rota /sales", function () {
   afterEach(function () {
     sinon.restore();
   });
@@ -35,7 +35,7 @@ describe("Teste de unidade do sales Controller", function () {
       expect(res.json).to.have.been.calledWith(salesList);
     });
 
-    it("Deve retornar o status 200 e a venda quando consulta um id válido", async function () {
+    it("Deve retornar o status 200 e a venda quando consulta um id válido na rota /:id", async function () {
       const res = {};
       const req = { params: { id: 1 } };
 
@@ -51,7 +51,7 @@ describe("Teste de unidade do sales Controller", function () {
       expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(salesList[0]);
     });
-    it("Deve retornar o status 404 e a venda quando consulta um id inválido", async function () {
+    it("Deve retornar o status 404 e a venda quando consulta um id inválido na rota /:id", async function () {
       const res = {};
       const req = { params: { id: 1123 } };
 

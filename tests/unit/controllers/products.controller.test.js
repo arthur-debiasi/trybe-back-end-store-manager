@@ -17,7 +17,7 @@ const {
   fubaStub,
 } = require("./mocks/products.controller.mock");
 
-describe("Teste de unidade do products Controller", function () {
+describe("Teste de unidade do Controller na rota /products", function () {
   afterEach(function () {
     sinon.restore();
   });

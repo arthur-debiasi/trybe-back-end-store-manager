@@ -5,7 +5,7 @@ const { salesModel } = require("../../../src/models");
 const connection = require("../../../src/models/connection");
 const { salesList, validSale } = require("./mocks/sales.model.mock");
 
-describe("Testes de unidade do model de vendas", function () {
+describe("Testes de unidade do Model na rota /sales", function () {
   afterEach(function () {
     sinon.restore();
   })
