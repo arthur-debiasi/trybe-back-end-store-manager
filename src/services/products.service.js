@@ -1,6 +1,17 @@
 const schema = require('./validations/validationsInputValues');
 const { productsModel } = require('../models');
 
+const deleteProductById = async (productId) => {
+  const products = await productsModel.listProducts();
+  const productsIds = products.map(({ id }) => +id);
+  if (!productsIds.includes(productId)) {
+    return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+  }
+
+ await productsModel.deleteProductById(productId);
+  return {};
+};
+
 const listProducts = async () => {
   const products = await productsModel.listProducts();
   return { type: null, message: products };
@@ -41,6 +52,7 @@ const updateProduct = async (product, productId) => {
 };
 
 module.exports = {
+  deleteProductById,
   listProducts,
   listProductsById,
   registerProduct,
