@@ -64,8 +64,13 @@ describe("Verificando service de products", function () {
 
        expect(result).to.be.deep.equal(salResponse);
      });
-
-   })
+  })
+  
+  // describe('Deletando um produto', () => {
+  //   it('quando seu id não se encontra no banco de dados', async function () {
+  //     sinon.stub(pro)
+  //   })
+  // })
 
   afterEach(function () {
     sinon.restore();

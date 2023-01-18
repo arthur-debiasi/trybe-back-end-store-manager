@@ -45,8 +45,8 @@ const updateProduct = async (product, productId) => {
       return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
     }
 
-  const newProductId = await productsModel.updateProduct(product.name, productId);
-  const newProduct = await productsModel.listProductsById(newProductId);
+  await productsModel.updateProduct(product.name, productId);
+  const newProduct = await productsModel.listProductsById(productId);
 
   return { type: null, message: newProduct };
 };

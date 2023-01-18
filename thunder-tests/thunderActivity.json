@@ -41,12 +41,12 @@
     "method": "PUT",
     "sortNum": 0,
     "created": "2023-01-16T16:04:51.674Z",
-    "modified": "2023-01-17T20:05:37.818Z",
+    "modified": "2023-01-18T18:22:59.647Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"manteiga\"\n}",
+      "raw": "{\n  \"name\": \"dsdiga\"\n}",
       "form": []
     },
     "tests": []
@@ -117,6 +117,34 @@
     "sortNum": 0,
     "created": "2023-01-16T21:59:41.383Z",
     "modified": "2023-01-16T21:59:41.383Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "aff9edb3-ad09-4029-8a7d-be6fb16c0bde",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/1",
+    "url": "localhost:3000/products/3",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2023-01-18T12:58:58.737Z",
+    "modified": "2023-01-18T13:11:03.449Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "d799d5a7-c250-4b2b-8059-3dd8a7e0d3b9",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/3",
+    "url": "localhost:3000/products/3",
+    "method": "DELETE",
+    "sortNum": 0,
+    "created": "2023-01-18T13:02:08.277Z",
+    "modified": "2023-01-18T13:02:08.277Z",
     "headers": [],
     "params": [],
     "tests": []
