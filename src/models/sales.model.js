@@ -1,6 +1,14 @@
 const camelize = require('camelize');
 const connection = require('./connection');
 
+const deleteSales = async (saleId) => {
+  const [result] = await connection.execute(
+    'DELETE FROM StoreManager.sales WHERE id = ?;',
+    [saleId],
+  );
+  return camelize(result);
+};
+
 const listSales = async () => {
   const [result] = await connection.execute(
     `SELECT 
@@ -46,4 +54,5 @@ module.exports = {
   registerSales,
   listSales,
   listSalesById,
+  deleteSales,
 };

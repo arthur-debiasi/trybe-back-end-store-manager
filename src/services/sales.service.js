@@ -1,5 +1,19 @@
 const { salesModel, productsModel } = require('../models');
-const { validateRegisterSale } = require('./validations/validationsInputValues');
+const {
+  validateRegisterSale,
+} = require('./validations/validationsInputValues');
+
+const deleteSales = async (id) => {
+  const sales = await salesModel.listSales();
+  const salesIdsList = sales.map(({ saleId }) => saleId);
+  console.log(sales);
+  if (!salesIdsList.includes(id)) {
+    console.log('0ie');
+    return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+  }
+  await salesModel.deleteSales(id);
+  return {};
+};
 
 const listSales = async () => {
   const sales = await salesModel.listSales();
@@ -8,7 +22,7 @@ const listSales = async () => {
 const listSalesById = async (id) => {
   const sales = await salesModel.listSales();
   const salesIdsList = sales.map(({ saleId }) => saleId);
-  if (!salesIdsList.includes(id)) return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+  if (!salesIdsList.includes(id)) { return { type: 'SALE_NOT_FOUND', message: 'Sale not found' }; }
   return { type: null, message: await salesModel.listSalesById(id) };
 };
 
@@ -25,12 +39,13 @@ const registerSales = async (sales) => {
     id: saleId,
     itemsSold: sales,
   };
-  
+
   return { type: null, message: newSale };
 };
 
 module.exports = {
-  registerSales,
+  deleteSales,
   listSales,
   listSalesById,
+  registerSales,
 };

@@ -1,6 +1,12 @@
 const { salesService } = require('../services');
 const { mapError } = require('../utils/errorMap');
 
+const deleteSales = async (req, res) => {
+  const { type, message } = await salesService.deleteSales(Number(req.params.id));
+  if (type) return res.status(mapError(type)).json({ message });
+  return res.status(204).end();
+};
+
 const listSales = async (req, res) => {
   const { type, message } = await salesService.listSales();
   if (type) return res.status(mapError(type)).json({ message });
@@ -22,7 +28,8 @@ const registerSales = async (req, res) => {
 };
 
 module.exports = {
-  registerSales,
+  deleteSales,
   listSales,
   listSalesById,
+  registerSales,
 };
