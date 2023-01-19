@@ -1,71 +1,56 @@
-const { rightSaleBody } = require('../../__tests__/_dataMock');
 const { salesModel, productsModel } = require('../models');
 const {
-  validateRegisterSale, validateSalesById,
+  validateRegisterSale,
+  validateSalesById,
+  validateUpdateSales,
 } = require('./validations/validationsInputValues');
 
 const deleteSales = async (id) => {
-  const sales = await salesModel.listSales();
-  const salesIdsList = sales.map(({ saleId }) => saleId);
-  console.log(sales);
-  if (!salesIdsList.includes(id)) {
-    console.log('0ie');
-    return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
-  }
+  const salesList = await salesModel.listSales();
+  validateSalesById(salesList, id);
   await salesModel.deleteSales(id);
   return {};
 };
 
 const listSales = async () => {
-  const sales = await salesModel.listSales();
-  return { type: null, message: sales };
+  const salesList = await salesModel.listSales();
+  return { type: null, message: salesList };
 };
 const listSalesById = async (id) => {
-  const sales = await salesModel.listSales();
-  validateSalesById(sales, id);
+  const salesList = await salesModel.listSales();
+  const error = validateSalesById(salesList, id);
+  if (error.type) return error;
   return { type: null, message: await salesModel.listSalesById(id) };
 };
 
 const registerSales = async (sales) => {
-  const error = validateRegisterSale(sales);
+  const productsList = await productsModel.listProducts();
+  const error = validateRegisterSale(sales, productsList);
   if (error.type) return error;
-  // const products = await productsModel.listProducts();
-  // const productsIds = products.map(({ id }) => +id);
-  // if (sales.some(({ productId }) => !productsIds.includes(productId))) {
-  //   return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
-  // }
   const saleId = await salesModel.registerSales(sales);
   const newSale = {
     id: saleId,
     itemsSold: sales,
   };
-
   return { type: null, message: newSale };
 };
-registerSales(rightSaleBody).then((e) => console.log(e));
 const updateSales = async (saleIdToUpdate, sales) => {
-  const error = validateRegisterSale(sales);
-  if (error.type) return error;
-   const products = await productsModel.listProducts();
-  const productsIds = products.map(({ id }) => +id);
-  if (sales.some(({ productId }) => !productsIds.includes(productId))) {
-    return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
-  }
+  const productsList = await productsModel.listProducts();
   const salesList = await salesModel.listSales();
-  const salesIdsList = salesList.map(({ saleId }) => saleId);
-  if (!salesIdsList.includes(saleIdToUpdate)) {
-    return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
-  }
+  const error = validateUpdateSales(
+    sales,
+    productsList,
+    salesList,
+    saleIdToUpdate,
+  );
+  if (error.type) return error;
   await salesModel.updateSales(saleIdToUpdate, sales);
-   const newSale = {
-     id: saleIdToUpdate,
-     itemsSold: sales,
-   };
-
-   return { type: null, message: newSale };
+  const newSale = {
+    id: saleIdToUpdate,
+    itemsSold: sales,
+  };
+  return { type: null, message: newSale };
 };
-
-// updateSales(1, rightSaleBody).then((e) => console.log(e));
 
 module.exports = {
   deleteSales,

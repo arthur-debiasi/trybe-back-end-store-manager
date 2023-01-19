@@ -23,14 +23,17 @@ FROM
 };
 
 const listSalesById = async (id) => {
-  const [result] = await connection.execute(`SELECT 
+  const [result] = await connection.execute(
+    `SELECT 
     sp.product_id, sp.quantity, s.date
 FROM
     StoreManager.sales_products AS sp
         INNER JOIN
     StoreManager.sales AS s
     ON s.id = sp.sale_id
-    WHERE s.id = ?;`, [id]);
+    WHERE s.id = ?;`,
+    [id],
+  );
   return camelize(result);
 };
 
@@ -39,15 +42,38 @@ const registerSales = async (sales) => {
     'INSERT INTO StoreManager.sales (date) VALUE (NOW())',
   );
   const saleProducts = sales
-    .map(({ productId, quantity }) => `(${insertId}, ${productId}, ${quantity})`)
+    .map(
+      ({ productId, quantity }) => `(${insertId}, ${productId}, ${quantity})`,
+    )
     .join(', ');
 
   await connection.execute(
-    `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES ${
-      saleProducts
-    }`,
+    `INSERT INTO 
+    StoreManager.sales_products
+    (sale_id, product_id, quantity)
+    VALUES
+    ${saleProducts}`,
   );
   return insertId;
+};
+
+const updateSales = async (saleId, sales) => {
+  const [deleteResult] = await connection.execute(
+    'DELETE FROM StoreManager.sales_products WHERE sale_id = ?',
+    [saleId],
+  );
+  const saleProducts = sales
+    .map(({ productId, quantity }) => `(${saleId}, ${productId}, ${quantity})`)
+    .join(', ');
+  await connection.execute(
+    `INSERT INTO
+StoreManager.sales_products 
+(sale_id, product_id, quantity) 
+VALUES
+  ${saleProducts}`,
+  );
+
+  return deleteResult;
 };
 
 module.exports = {
@@ -55,4 +81,5 @@ module.exports = {
   listSales,
   listSalesById,
   deleteSales,
+  updateSales,
 };
