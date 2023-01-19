@@ -30,6 +30,15 @@ const registerProduct = async (name) => {
   return insertId;
 };
 
+const searchProduct = async (searchTerm) => {
+  const [result] = await connection.execute(
+    `SELECT * FROM StoreManager.products
+WHERE name LIKE ? ;`, [`%${searchTerm}%`],
+  );
+  return camelize(result);
+};
+searchProduct('martelo').then((e) => console.log(e));
+
 const updateProduct = async (name, productId) => {
   const [result] = await connection.execute(
     `UPDATE StoreManager.products 
@@ -47,5 +56,6 @@ module.exports = {
   listProducts,
   listProductsById,
   registerProduct,
+  searchProduct,
   updateProduct,
 };

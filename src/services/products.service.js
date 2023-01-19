@@ -36,6 +36,13 @@ const registerProduct = async (product) => {
   return { type: null, message: newProduct };
 };
 
+const searchProduct = async (searchTerm) => {
+  // const error = schema.validateSearchProduct(searchTerm);
+  // if (error.type) return error;
+  const queryResult = await productsModel.searchProduct(searchTerm);
+  return { type: null, message: queryResult };
+};
+
 const updateProduct = async (product, productId) => {
   const error = schema.validateRegisterProduct(product);
   if (error.type) return error;
@@ -56,5 +63,6 @@ module.exports = {
   listProducts,
   listProductsById,
   registerProduct,
+  searchProduct,
   updateProduct,
 };

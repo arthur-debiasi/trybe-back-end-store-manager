@@ -35,6 +35,7 @@ const registerSales = async (sales) => {
   };
   return { type: null, message: newSale };
 };
+
 const updateSales = async (saleIdToUpdate, sales) => {
   const productsList = await productsModel.listProducts();
   const salesList = await salesModel.listSales();
