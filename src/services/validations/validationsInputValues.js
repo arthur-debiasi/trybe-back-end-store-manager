@@ -7,7 +7,6 @@ const {
 const validateId = (id) => {
   const { error } = idSchema.validate(id);
   if (error) return { type: 'INVALID_VALUE', message: '"id" must be a number' };
-
   return { type: null, message: '' };
 };
 
@@ -19,7 +18,6 @@ const validateRegisterProduct = (product) => {
       message: error.message,
     };
   }
-
   return { type: null, message: '' };
 };
 
@@ -53,7 +51,6 @@ const validateUpdateSales = (sales, productsList, salesList, salesId) => {
   let error = validateRegisterSale(sales, productsList);
   if (error.type) return error;
   error = validateSalesById(salesList, salesId);
-  console.log(error);
   if (error.type) return error;
   return { type: null, message: '' };
 };

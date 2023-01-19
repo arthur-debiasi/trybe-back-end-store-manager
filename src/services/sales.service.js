@@ -7,7 +7,8 @@ const {
 
 const deleteSales = async (id) => {
   const salesList = await salesModel.listSales();
-  validateSalesById(salesList, id);
+  const error = validateSalesById(salesList, id);
+  if (error.type) return error;
   await salesModel.deleteSales(id);
   return {};
 };
@@ -46,8 +47,8 @@ const updateSales = async (saleIdToUpdate, sales) => {
   if (error.type) return error;
   await salesModel.updateSales(saleIdToUpdate, sales);
   const newSale = {
-    id: saleIdToUpdate,
-    itemsSold: sales,
+    saleId: saleIdToUpdate,
+    itemsUpdated: sales,
   };
   return { type: null, message: newSale };
 };

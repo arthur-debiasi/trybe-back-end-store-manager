@@ -46,7 +46,6 @@ const registerSales = async (sales) => {
       ({ productId, quantity }) => `(${insertId}, ${productId}, ${quantity})`,
     )
     .join(', ');
-
   await connection.execute(
     `INSERT INTO 
     StoreManager.sales_products
@@ -72,7 +71,6 @@ StoreManager.sales_products
 VALUES
   ${saleProducts}`,
   );
-
   return deleteResult;
 };
 
