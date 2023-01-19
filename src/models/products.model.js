@@ -37,7 +37,6 @@ WHERE name LIKE ? ;`, [`%${searchTerm}%`],
   );
   return camelize(result);
 };
-searchProduct('martelo').then((e) => console.log(e));
 
 const updateProduct = async (name, productId) => {
   const [result] = await connection.execute(
