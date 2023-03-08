@@ -81,3 +81,12 @@ module.exports = {
   deleteSales,
   updateSales,
 };
+
+const sale1 = [
+  { productId: 2, quantity: 5 },
+];
+
+const sale2 = [
+  { productId: 1, quantity: 2 },
+  { productId: 2, quantity: 2 },
+];
