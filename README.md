@@ -23,7 +23,7 @@ npm install
 
 ### ⚡ Running the Aplication
 
-Inicialmente é preciso configurar um banco de dados MySQL:
+Initially, you need to configure a MySQL database:
 
 - Defining environment variables in an .env file;
 - Creating the database with:
