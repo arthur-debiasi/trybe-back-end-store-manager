@@ -32,7 +32,7 @@ Inicialmente é preciso configurar um banco de dados MySQL:
 npm run restore
 ``` 
 
-Após isso, a aplicação pode ser iniciada com:
+After that, the application can be started with:
 
 ```bash
 npm start
