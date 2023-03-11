@@ -10,8 +10,8 @@ RESTful API for a sales management application using the MSC (model-service-cont
 
 ## 📌 Skills
 
-- Develop a CRUD API (Create, Read, Update and Delete);
-- Develop endpoints for reading and writing to a file using the fs module.
+- Develop a RESTful API from a CRUD (Create, Read, Update and Delete);
+- Develop endpoints to read and write to a MySQL database.
 
 ## Getting Started
 
