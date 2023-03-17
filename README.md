@@ -6,12 +6,13 @@ RESTful API for a sales management application using the MSC (model-service-cont
 
 ## 🚀 Built With
 
-> [![Node.js][Node.js]][Node.js-url][![MySQL][MySQL]][MySQL-url]
+> [![Node.js][Node.js]][Node.js-url][![MySQL][MySQL]][MySQL-url][![Mocha][Mocha]][Mocha-url][![Chai][Chai]][Chai-url]
 
 ## 📌 Skills
 
 - Develop a RESTful API from a CRUD (Create, Read, Update and Delete);
 - Develop endpoints to read and write to a MySQL database.
+- Test Driven Development creating a Unit Tests routine with Mocha, Chai and Sinon.
 
 ## Getting Started
 
@@ -69,4 +70,8 @@ Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais
 [Docker-url]: https://www.docker.com/
 [MySQL]: https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white
 [MySQL-url]: https://dev.mysql.com/doc/
+[Mocha]: https://img.shields.io/badge/mocha-8D6748?style=for-the-badge&logo=mocha&logoColor=white
+[Mocha-url]: https://mochajs.org/
+[Chai]: https://img.shields.io/badge/chai-A30701?style=for-the-badge&logo=chai&logoColor=white
+[Chai-url]: https://www.chaijs.com/
 
